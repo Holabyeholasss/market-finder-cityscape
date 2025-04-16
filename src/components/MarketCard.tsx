@@ -53,10 +53,10 @@ const MarketCard = ({ market }: MarketCardProps) => {
       <CardHeader className="cursor-pointer" onClick={() => setIsExpanded(!isExpanded)}>
         <div className="flex items-center justify-between">
           <div>
-            <h3 className="font-semibold">{market.catchment_name}</h3>
-            <p className="text-sm text-muted-foreground">{market.city}</p>
+            <h3 className="text-sm font-semibold">{market.catchment_name}</h3>
+            <p className="text-xs text-muted-foreground">{market.city}</p>
           </div>
-          {isExpanded ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
+          {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
         </div>
       </CardHeader>
       {isExpanded && (
@@ -64,37 +64,42 @@ const MarketCard = ({ market }: MarketCardProps) => {
           <div className="space-y-4">
             <div className="grid gap-2">
               <div className="flex items-center gap-2">
-                <Badge variant="outline" className={getPriorityColor(market.priority)}>
+                <Badge variant="outline" className={`text-xs ${getPriorityColor(market.priority)}`}>
                   {market.priority.toUpperCase()}
                 </Badge>
-                <Badge variant="secondary">Added on: {market.added_on}</Badge>
+                <Badge variant="secondary" className="text-xs">Added on: {market.added_on}</Badge>
               </div>
               
-              <p className="text-sm">{market.address}</p>
+              <p className="text-xs text-muted-foreground">{market.address}</p>
               
-              <div className="grid grid-cols-2 gap-4 text-sm">
-                <div>
-                  <p className="text-muted-foreground">Properties shared</p>
-                  <p className="font-medium">{market.properties_shared}</p>
+              <div className="space-y-2 text-xs">
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Properties shared</span>
+                  <span className="font-medium">{market.properties_shared}</span>
                 </div>
-                <div>
-                  <p className="text-muted-foreground">Carpet area</p>
-                  <p className="font-medium">{market.carpet_area} sq ft.</p>
+                
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Carpet area</span>
+                  <span className="font-medium">{market.carpet_area} sq ft.</span>
                 </div>
-                <div>
-                  <p className="text-muted-foreground">Rent</p>
-                  <p className="font-medium">INR {market.rent.toLocaleString()}</p>
+                
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground">Rent</span>
+                  <span className="font-medium">INR {market.rent.toLocaleString()}</span>
                 </div>
+                
                 <div>
-                  <p className="text-muted-foreground">Added by</p>
-                  <p className="font-medium">{market.added_by.name}</p>
-                  <p className="text-sm text-muted-foreground">{market.added_by.phone}</p>
+                  <div className="text-muted-foreground">Added by</div>
+                  <div className="flex justify-between">
+                    <span className="font-medium">{market.added_by.name}</span>
+                    <span className="text-xs text-muted-foreground">{market.added_by.phone}</span>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <Button onClick={handleGoogleMapsClick} className="w-full">
-              <MapPin className="mr-2 h-4 w-4" />
+            <Button onClick={handleGoogleMapsClick} className="w-full text-xs">
+              <MapPin className="mr-2 h-3 w-3" />
               View on Google Maps
             </Button>
           </div>
@@ -105,3 +110,4 @@ const MarketCard = ({ market }: MarketCardProps) => {
 };
 
 export default MarketCard;
+
