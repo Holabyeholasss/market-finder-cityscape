@@ -1,19 +1,22 @@
 
+import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
-import { Input } from "./ui/input";
+import { cn } from "@/lib/utils";
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
+  className?: string;
 }
 
-const SearchBar = ({ onSearch }: SearchBarProps) => {
+const SearchBar = ({ onSearch, className }: SearchBarProps) => {
   return (
-    <div className="relative">
-      <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
+    <div className={cn("relative", className)}>
+      <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
       <Input
+        type="text"
         placeholder="Search markets..."
-        className="pl-8"
         onChange={(e) => onSearch(e.target.value)}
+        className="pl-9"
       />
     </div>
   );
