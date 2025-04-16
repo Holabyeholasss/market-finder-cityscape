@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
@@ -72,12 +73,7 @@ export function FiltersDrawer({ onFiltersChange, cities }: FiltersDrawerProps) {
         <div className="space-y-6 py-6">
           <div>
             <h3 className="text-sm font-medium mb-3">Priority</h3>
-            <ToggleGroup 
-              type="multiple" 
-              className="flex flex-wrap gap-2" 
-              value={selectedPriorities} 
-              onValueChange={(value) => setSelectedPriorities(value as Priority[])}
-            >
+            <ToggleGroup type="multiple" className="flex flex-wrap gap-2" value={selectedPriorities} onValueChange={setSelectedPriorities}>
               {priorities.map((priority) => (
                 <ToggleGroupItem key={priority} value={priority} className="rounded-full capitalize">
                   {priority}
@@ -88,12 +84,7 @@ export function FiltersDrawer({ onFiltersChange, cities }: FiltersDrawerProps) {
 
           <div>
             <h3 className="text-sm font-medium mb-3">Added on</h3>
-            <ToggleGroup 
-              type="multiple" 
-              className="flex flex-wrap gap-2" 
-              value={selectedDates} 
-              onValueChange={(value) => setSelectedDates(value as DateFilter[])}
-            >
+            <ToggleGroup type="multiple" className="flex flex-wrap gap-2" value={selectedDates} onValueChange={setSelectedDates}>
               {dateFilters.map((filter) => (
                 <ToggleGroupItem key={filter.value} value={filter.value} className="rounded-full">
                   {filter.label}
